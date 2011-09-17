@@ -1,14 +1,20 @@
+#ifdef _WIN32
+#include <Winsock2.h>
+#pragma comment(lib, "Ws2_32.lib")
+#else
 #include <linux/socket.h>
 #include <unistd.h>
-#include <stdio.h>
-int main(int argc, char **argv)
+#endif
+void network_init()
 {
-	char hostname[256];
-	int ret = gethostname(hostname, 256);
-	if (ret == -1) {
-		printf("Cannot get host name\n");
-		return -1;
-	}
-	printf("Host Name = %s\n", hostname);
-	return 0;
+#ifdef _WIN32
+	WSADATA wsaData;
+	WSAStartup(MAKEWORD(2, 2), &wsaData);
+#endif
+}
+void network_shutdown()
+{
+#ifdef _WIN32
+	WSACleanup();
+#endif
 }
