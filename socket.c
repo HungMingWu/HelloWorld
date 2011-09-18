@@ -18,3 +18,7 @@ void network_shutdown()
 	WSACleanup();
 #endif
 }
+int network_gethostname(char *host, int len)
+{
+	return gethostname(host, len);
+}
