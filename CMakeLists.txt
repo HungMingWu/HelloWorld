@@ -1,3 +1,3 @@
-PROJECT(hello)
-SET (SRC_PATH main.c socket.c)
-ADD_EXECUTABLE(main ${SRC_PATH})
+PROJECT(NetworkLibrary)
+SET (SRC_PATH gethostbyname.c socket.c)
+ADD_EXECUTABLE(bin/gethostbyname ${SRC_PATH})
